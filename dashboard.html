@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard · The Daily Crumb</title>
+  <meta name="description" content="Manage bakery orders with greedy priority scheduling, dynamic programming profit optimization, oven scheduling, and live analytics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,600;9..144,0,700;9..144,1,600;9..144,1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="cover.html" style="display:flex; align-items:center; gap:12px;">
+          <div class="brand-mark">🥐</div>
+          <div>
+            <h1 class="brand-name">The Daily Crumb</h1>
+            <p class="brand-tag">Order management · Smart kitchen</p>
+          </div>
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="cover.html">← Home</a>
+        <a href="#orders">Orders</a>
+        <a href="#scheduler">Scheduler</a>
+        <a href="#staff">Staff</a>
+        <a href="#analytics">Analytics</a>
+        <a href="#inventory">Inventory</a>
+        <a href="#reports">Reports</a>
+      </nav>
+      <div class="hours">🌾 Open · 6:00 AM – 8:00 PM</div>
+    </div>
+  </header>
+
+  <section class="container hero">
+    <div class="kicker"><span class="line"></span> Smart bakery operations</div>
+    <h2 class="hero-title">Bake the right order<br><em>at the right time.</em></h2>
+    <p class="hero-sub">Greedy scheduling keeps urgent, high-value orders moving. Dynamic programming picks the most profitable batch from your remaining oven time. Parallel oven scheduling assigns each order to the next free oven and baker. Less waste, less waiting.</p>
+  </section>
+
+  <section class="container stats" id="stats"></section>
+
+  <section class="container main-grid">
+    <div class="queue-col" id="orders">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Greedy queue</h2>
+          <p class="section-sub">Sorted by <code>value × urgency × loyalty / prep</code></p>
+        </div>
+        <span class="muted small" id="queue-count"></span>
+      </div>
+
+      <div class="cat-filter" id="cat-filter"></div>
+
+      <div id="queue"></div>
+    </div>
+
+    <aside class="side-col">
+      <div class="card card-dark" id="scheduler">
+        <div class="badge-row">
+          <span class="chip chip-light">✨ Dynamic Programming</span>
+        </div>
+        <h2 class="card-title light">Profit Optimizer</h2>
+        <p class="card-sub light">0/1 knapsack picks the order subset that maximizes profit within your time window.</p>
+        <div class="slider-row">
+          <span>Time budget</span>
+          <span class="bold tabular" id="budget-val">180 min</span>
+        </div>
+        <input type="range" id="budget" min="30" max="400" step="10" value="180" />
+        <div class="dp-stats" id="dp-stats"></div>
+        <div class="dp-picks" id="dp-picks"></div>
+        <button class="btn btn-light" id="dp-apply">📈 Bake optimal batch</button>
+      </div>
+
+      <div class="card" id="staff">
+        <div class="card-head">
+          <h2 class="card-title">👨‍🍳 Staff & Ovens</h2>
+          <span class="chip chip-mute">Parallel scheduler</span>
+        </div>
+        <p class="card-sub">Each order goes to the earliest-free oven and baker. Bakers have different speeds.</p>
+        <div id="staff-panel"></div>
+      </div>
+
+      <div class="card" id="inventory">
+        <div class="card-head">
+          <h2 class="card-title">🌾 Inventory</h2>
+          <button class="btn btn-ghost" id="restock">↻ Restock all</button>
+        </div>
+        <div id="ingredients"></div>
+        <div id="reorder-panel" class="reorder-panel"></div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Place an order</h2>
+        <p class="card-sub">New orders are auto-priced into the greedy queue.</p>
+        <form id="new-order-form" class="form-grid">
+          <label class="full"><span>Customer name *</span><input id="f-customer" placeholder="Jane Doe" maxlength="60" required /></label>
+          <label><span>Phone</span><input id="f-phone" placeholder="555-0100" maxlength="20" /></label>
+          <label><span>Email</span><input id="f-email" type="email" placeholder="jane@mail.com" maxlength="80" /></label>
+          <label class="full"><span>Category</span><select id="f-cat"></select></label>
+          <label class="full"><span>Item</span><select id="f-item"></select></label>
+          <label><span>Quantity</span><input id="f-qty" type="number" min="1" value="1" /></label>
+          <label><span>Price ($)</span><input id="f-price" type="number" min="1" value="15" /></label>
+          <label><span>Deadline (min)</span><input id="f-deadline" type="number" min="10" value="120" /></label>
+          <label><span>Prep (min)</span><input id="f-prep" type="number" min="5" value="30" /></label>
+          <fieldset class="full radio-group">
+            <legend>Fulfillment</legend>
+            <label class="radio-pill"><input type="radio" name="f-type" value="pickup" checked /><span>🛍️ Pickup</span></label>
+            <label class="radio-pill"><input type="radio" name="f-type" value="delivery" /><span>🚲 Delivery</span></label>
+          </fieldset>
+          <label class="full" id="f-addr-label"><span>Delivery address</span><input id="f-address" placeholder="12 Vine St, Apt 3" maxlength="120" /></label>
+          <label class="full"><span>Notes / allergies / message</span><textarea id="f-notes" rows="2" maxlength="200" placeholder="e.g. nut-free, write 'Happy Birthday'"></textarea></label>
+          <label class="full check-row"><input type="checkbox" id="f-gift" /><span>🎁 Add gift wrap</span></label>
+          <button class="btn btn-primary full" type="submit">+ Add to queue</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">★ Customers</h2>
+        <p class="card-sub">Loyalty tiers boost greedy priority for repeat customers.</p>
+        <div id="customer-list" class="customer-list"></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="container analytics-section" id="analytics">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">📊 Analytics</h2>
+        <p class="section-sub">Live charts of sales, weekly trend, and category mix.</p>
+      </div>
+    </div>
+    <div class="analytics-grid">
+      <div class="card chart-card" id="chart-hourly"></div>
+      <div class="card chart-card" id="chart-weekly"></div>
+      <div class="card chart-card" id="chart-pie"></div>
+    </div>
+  </section>
+
+  <section class="container" id="reports">
+    <div class="card">
+      <h2 class="card-title">🧾 Daily & Weekly Report</h2>
+      <div id="report-stats" class="report-stats"></div>
+      <div class="report-grid">
+        <div>
+          <p class="muted small uppercase tracked">Top sellers (today)</p>
+          <div id="top-sellers"></div>
+        </div>
+        <div>
+          <p class="muted small uppercase tracked">Sales by category (today)</p>
+          <div id="cat-breakdown"></div>
+        </div>
+        <div>
+          <p class="muted small uppercase tracked">Weekly summary</p>
+          <div id="week-summary" class="week-summary"></div>
+        </div>
+      </div>
+      <div class="report-total">
+        <span class="muted">Total revenue today</span>
+        <span class="bold display" id="report-total">$0.00</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container small muted">The Daily Crumb · Greedy scheduling, DP knapsack, parallel oven scheduling · <a href="cover.html" style="color:inherit; text-decoration:underline;">Back to home</a></div>
+  </footer>
+
+  <div id="toast-host" class="toast-host"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

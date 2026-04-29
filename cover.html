@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Daily Crumb · Artisan Bakery & Smart Order Management</title>
+  <meta name="description" content="Welcome to The Daily Crumb — artisan breads, pastries, cakes, donuts, savory bites, sandwiches and seasonal specials, powered by smart order scheduling." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,600;9..144,0,700;9..144,1,600;9..144,1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="cover-body">
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-mark">🥐</div>
+        <div>
+          <h1 class="brand-name">The Daily Crumb</h1>
+          <p class="brand-tag">Artisan bakery · Est. 2024</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#featured">Today's pick</a>
+        <a href="#categories">Menu</a>
+        <a href="#story">Our story</a>
+        <a href="#tech">Smart kitchen</a>
+        <a href="#visit">Visit</a>
+      </nav>
+      <a href="dashboard.html" class="btn btn-primary header-cta">Open Dashboard →</a>
+    </div>
+  </header>
+
+  <!-- HERO COVER -->
+  <section class="cover-hero">
+    <div class="container cover-hero-inner">
+      <div class="cover-text">
+        <div class="kicker"><span class="line"></span> Flour · Fire · Patience</div>
+        <h2 class="cover-title">
+          Bread baked at dawn.<br>
+          <em>Orders managed by math.</em>
+        </h2>
+        <p class="cover-sub">
+          A small neighborhood bakery with a smart back-office. Browse our menu of breads,
+          pastries, cakes, cookies, donuts, savory bites, sandwiches, drinks, and seasonal specials —
+          then step inside the kitchen to see how greedy scheduling, dynamic programming and
+          parallel oven scheduling get every order out on time.
+        </p>
+        <div class="cover-actions">
+          <a href="#featured" class="btn btn-primary cover-btn">Today's featured bake</a>
+          <a href="dashboard.html" class="btn btn-ghost cover-btn">Open order dashboard</a>
+        </div>
+        <div class="cover-meta">
+          <div><strong>6 AM – 8 PM</strong><span>Open daily</span></div>
+          <div><strong>50+</strong><span>Items on the menu</span></div>
+          <div><strong>9 cats</strong><span>Categories baked daily</span></div>
+        </div>
+      </div>
+      <div class="cover-art">
+        <div class="cover-card cover-card-1">🥖<span>Sourdough</span></div>
+        <div class="cover-card cover-card-2">🎂<span>Cakes</span></div>
+        <div class="cover-card cover-card-3">🥐<span>Pastries</span></div>
+        <div class="cover-card cover-card-4">☕<span>Coffee</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ITEM OF THE DAY -->
+  <section class="container cover-section" id="featured">
+    <div class="kicker"><span class="line"></span> Featured today</div>
+    <h3 class="cover-h3">The baker's pick of the day.</h3>
+    <div id="featured-host" class="featured-card"></div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="container cover-section" id="categories">
+    <div class="kicker"><span class="line"></span> Today's menu</div>
+    <h3 class="cover-h3">Nine categories, baked in-house.</h3>
+    <p class="cover-lead">Every item is connected to a live recipe and inventory in our smart kitchen.</p>
+
+    <div class="cat-grid" id="cat-grid"></div>
+  </section>
+
+  <!-- STORY (expanded) -->
+  <section class="cover-strip" id="story">
+    <div class="container cover-strip-inner">
+      <div>
+        <div class="kicker light"><span class="line"></span> Our story</div>
+        <h3 class="cover-h3 light">A modest oven, an ambitious queue.</h3>
+        <p class="cover-lead light">
+          We started in 2024 with one stone oven, a wholesale flour account, and a hand-written
+          notebook for orders. The notebook turned into a spreadsheet, the spreadsheet into an
+          algorithm. Today the same hands shape the dough, but the baking schedule is computed
+          — so urgent wedding cakes never wait behind a lazy baguette.
+        </p>
+        <p class="cover-lead light" style="margin-top:14px;">
+          We believe in three things: long ferments, local grain, and treating the oven schedule
+          as a problem worth solving. Everything we sell is mixed, shaped, proofed and baked on
+          site, by hand, by people whose names you can learn over the counter.
+        </p>
+      </div>
+      <div class="story-stats">
+        <div><div class="num">120+</div><div class="lbl">Orders / day</div></div>
+        <div><div class="num">98%</div><div class="lbl">On-time rate</div></div>
+        <div><div class="num">−35%</div><div class="lbl">Ingredient waste</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM (part of story expansion) -->
+  <section class="container cover-section" id="team">
+    <div class="kicker"><span class="line"></span> Meet the bakers</div>
+    <h3 class="cover-h3">Three pairs of hands, one warm oven.</h3>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,hsl(22 60% 52%),hsl(35 80% 60%));">M</div>
+        <h4>Marco</h4>
+        <p class="muted small">Head Baker · 12 yrs experience</p>
+        <p class="team-bio">Trained in Lyon. Sourdough purist. The reason our crusts crackle.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,hsl(345 60% 60%),hsl(22 70% 58%));">S</div>
+        <h4>Sofia</h4>
+        <p class="muted small">Pastry Chef · 8 yrs experience</p>
+        <p class="team-bio">Lamination wizard. Designs every cake. Slightly too generous with butter.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,hsl(28 40% 30%),hsl(22 50% 45%));">T</div>
+        <h4>Theo</h4>
+        <p class="muted small">Bread Baker · 5 yrs experience</p>
+        <p class="team-bio">Manages the overnight ferment. The first one in, every morning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH -->
+  <section class="container cover-section" id="tech">
+    <div class="kicker"><span class="line"></span> Smart kitchen</div>
+    <h3 class="cover-h3">Three algorithms, one warm loaf.</h3>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">⚡</div>
+        <h4>Greedy Scheduling</h4>
+        <p>Each pending order is scored by <code>value × urgency × loyalty / prep time</code>. The most
+           valuable, most urgent, fastest jobs jump to the front automatically.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🧮</div>
+        <h4>Dynamic Programming</h4>
+        <p>A 0/1 knapsack picks the most profitable subset of orders that fits inside a
+           given oven-time window — perfect for batching the next baking shift.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🔥</div>
+        <h4>Parallel Oven Scheduling</h4>
+        <p>Each order is assigned to the earliest-free oven and earliest-free baker, minimizing
+           overall makespan across three ovens and three bakers.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🌾</div>
+        <h4>Live Inventory & Auto-reorder</h4>
+        <p>Six ingredients tracked per gram. When stock dips below 30%, the system flags
+           low items and proposes a costed reorder list.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="dashboard.html" class="btn btn-primary cover-btn">Step into the kitchen →</a>
+    </div>
+  </section>
+
+  <!-- VISIT + CONTACT FORM + MAP -->
+  <section class="cover-strip light-strip" id="visit">
+    <div class="container">
+      <div class="kicker"><span class="line"></span> Visit us</div>
+      <h3 class="cover-h3">42 Mill Lane · Open daily 6 AM – 8 PM</h3>
+      <p class="cover-lead" style="margin-bottom:28px;">
+        Order online for pickup, or just walk in and follow the smell of warm butter.
+        Custom cakes need 24 h notice — place them through the dashboard or send us a note below.
+      </p>
+      <div class="contact-grid">
+        <form id="cover-contact-form" class="contact-form">
+          <label><span>Name</span><input id="cf-name" maxlength="60" required placeholder="Your name" /></label>
+          <label><span>Email</span><input id="cf-email" type="email" maxlength="80" required placeholder="you@mail.com" /></label>
+          <label><span>Message</span><textarea id="cf-msg" rows="4" maxlength="500" required placeholder="Custom cake? Catering? Just saying hi?"></textarea></label>
+          <button type="submit" class="btn btn-primary cover-btn">Send message</button>
+          <p class="muted small" style="margin-top:8px;">We reply within a day. Opens your email app.</p>
+        </form>
+        <div class="map-wrap">
+          <div class="map-svg-wrap" aria-label="Map of bakery location">
+            <!-- Stylized SVG map — no external service needed -->
+            <svg viewBox="0 0 400 280" class="map-svg">
+              <defs>
+                <pattern id="streets" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <rect width="40" height="40" fill="hsl(36 38% 92%)"/>
+                  <path d="M0 20 H40 M20 0 V40" stroke="hsl(35 25% 82%)" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="400" height="280" fill="url(#streets)"/>
+              <path d="M0 140 H400" stroke="hsl(28 40% 60%)" stroke-width="6"/>
+              <path d="M200 0 V280" stroke="hsl(28 40% 60%)" stroke-width="6"/>
+              <path d="M60 60 L140 60 L140 100 L60 100 Z" fill="hsl(85 35% 55% / 0.4)" stroke="hsl(85 35% 45%)" stroke-width="1"/>
+              <text x="100" y="84" text-anchor="middle" font-size="10" fill="hsl(28 40% 30%)">Park</text>
+              <path d="M260 180 L340 180 L340 240 L260 240 Z" fill="hsl(35 30% 86%)" stroke="hsl(28 40% 60%)" stroke-width="1"/>
+              <text x="300" y="214" text-anchor="middle" font-size="10" fill="hsl(28 40% 30%)">Market</text>
+              <!-- Pin -->
+              <circle cx="220" cy="120" r="22" fill="hsl(22 60% 52% / 0.2)"/>
+              <circle cx="220" cy="120" r="14" fill="hsl(22 60% 52%)"/>
+              <text x="220" y="125" text-anchor="middle" font-size="14" fill="white">🥐</text>
+              <text x="220" y="156" text-anchor="middle" font-size="11" font-weight="700" fill="hsl(28 40% 30%)">42 Mill Lane</text>
+            </svg>
+          </div>
+          <div class="map-info">
+            <div><strong>📍 Address</strong><br>42 Mill Lane, Old Quarter</div>
+            <div><strong>📞 Phone</strong><br>555-0142</div>
+            <div><strong>✉ Email</strong><br>hello@dailycrumb.bakery</div>
+            <div><strong>🕐 Hours</strong><br>Mon–Sun · 6 AM – 8 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container small muted">© The Daily Crumb · Built with greedy scheduling, dynamic programming & parallel oven scheduling</div>
+  </footer>
+
+  <div id="toast-host" class="toast-host"></div>
+
+  <script src="script.js"></script>
+  <script>
+    // Render category grid + featured item from the shared menu data.
+    document.addEventListener("DOMContentLoaded", () => {
+      // Categories grid
+      const host = document.getElementById("cat-grid");
+      if (host && typeof categories !== "undefined") {
+        host.innerHTML = categories.map(cat => `
+          <article class="cat-card">
+            <div class="cat-head" style="background:${cat.gradient}">
+              <span class="cat-emoji">${cat.emoji}</span>
+              <span class="cat-count">${cat.items.length} items</span>
+            </div>
+            <div class="cat-body">
+              <h4 class="cat-title">${cat.name}</h4>
+              <p class="cat-desc">${cat.desc}</p>
+              <ul class="cat-list">
+                ${cat.items.slice(0, 5).map(it => `
+                  <li><span>${it.name}</span><span class="cat-price">$${it.price.toFixed(2)}</span></li>
+                `).join("")}
+                ${cat.items.length > 5 ? `<li class="cat-more">+ ${cat.items.length - 5} more</li>` : ""}
+              </ul>
+            </div>
+          </article>
+        `).join("");
+      }
+
+      // Featured item — pick a deterministic-ish "item of the day" by date
+      const featured = document.getElementById("featured-host");
+      if (featured && typeof categories !== "undefined") {
+        const allItems = categories.flatMap(c => c.items.map(it => ({ ...it, cat: c })));
+        const dayIdx = new Date().getDate() % allItems.length;
+        const f = allItems[dayIdx];
+        featured.innerHTML = `
+          <div class="featured-art" style="background:${f.cat.gradient}">
+            <span class="featured-emoji">${f.cat.emoji}</span>
+            <span class="featured-cat-tag">${f.cat.name}</span>
+          </div>
+          <div class="featured-body">
+            <div class="kicker"><span class="line"></span> Featured · today only</div>
+            <h4 class="featured-title">${f.name}</h4>
+            <p class="featured-desc">Today's baker's pick from our ${f.cat.name.toLowerCase()} selection. Limited batch — first come, first served.</p>
+            <div class="featured-meta">
+              <div><strong class="display">$${f.price.toFixed(2)}</strong><span>Today's price</span></div>
+              <div><strong class="display">${f.prep}m</strong><span>Average prep</span></div>
+              <div><strong class="display">★ 4.9</strong><span>Customer rating</span></div>
+            </div>
+            <a href="dashboard.html" class="btn btn-primary cover-btn" style="margin-top:8px;">Order ${f.name}</a>
+          </div>
+        `;
+      }
+
+      // Contact form -> mailto with safe encoding
+      const cf = document.getElementById("cover-contact-form");
+      if (cf) {
+        cf.addEventListener("submit", e => {
+          e.preventDefault();
+          const name = document.getElementById("cf-name").value.trim().slice(0, 60);
+          const email = document.getElementById("cf-email").value.trim().slice(0, 80);
+          const msg = document.getElementById("cf-msg").value.trim().slice(0, 500);
+          if (!name || !email || !msg) return;
+          const subject = encodeURIComponent(`Hello from ${name}`);
+          const body = encodeURIComponent(`${msg}\n\n— ${name} (${email})`);
+          window.location.href = `mailto:hello@dailycrumb.bakery?subject=${subject}&body=${body}`;
+          if (typeof toast === "function") toast("Opening your email app…", "Thanks for reaching out!");
+          cf.reset();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
